@@ -1,5 +1,5 @@
 # TodoList
-React+Redux+Babel
+React+Redux+Babel+Webpack+HotReplace
 
 # Preview
 ```
