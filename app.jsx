@@ -24,11 +24,7 @@ class App extends React.Component {
     render() {
         return (
             <div id="app">
-                <Hello
-                    onPush={name=>store.dispatch({type:"NAME_PUSH", value:name})}
-                    onDelete={index=>store.dispatch({type:"INDEX_DELETE", value:index})}
-                    data={store.getState()}
-                />
+                <Hello store={store}/>
             </div>
         )
     }

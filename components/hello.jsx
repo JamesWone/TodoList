@@ -3,7 +3,8 @@ import React from "react"
 export default class Hello extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props.data;
+        this.state = props.store.getState();
+        this.store = props.store;
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleBtnRemove = this.handleBtnRemove.bind(this);
     }
@@ -15,14 +16,14 @@ export default class Hello extends React.Component {
             this.inputNew.value = "";
             return;
         }
-        this.props.onPush(text);
+        this.store.dispatch({type:"NAME_PUSH", value:text});
         this.inputNew.value = "";
     }
 
     handleBtnRemove(e){
         e.preventDefault();
         var index = e.target.getAttribute("data-index");
-        this.props.onDelete(index);
+        this.store.dispatch({type:"INDEX_DELETE", value:index});
     }
 
     render() {
@@ -33,7 +34,7 @@ export default class Hello extends React.Component {
                     <tr>
                         <td colSpan="2">
                             <form onSubmit={this.handleBtnClick}>
-                                <input style={{height: "17px"}} type="text" defaultValue="" ref={input => this.inputNew = input}/>
+                                <input style={{height: "17px"}} type="text" defaultValue="" ref={obj => this.inputNew = obj}/>
                                 <input type="submit" value="提交"/>
                             </form>
                         </td>
